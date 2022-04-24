@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
   def create
   end
 
+  def FAQ
+  end
+
+  def contact
+  end
+
 end
