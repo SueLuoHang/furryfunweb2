@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'pets', to:'pages#pets'
   get "create", to:'pages#create'
+  get "FAQ", to:'pages#FAQ'
+  get "contact", to:'pages#contact'
 end

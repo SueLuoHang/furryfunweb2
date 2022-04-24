@@ -36,6 +36,12 @@ nav{
   letter-spacing: 5px;
   font-size: 20px;
 }
+
+.title{
+  text-decoration:none;
+  color:black;
+}
+
 .nav-links li a{
   color:black;
   text-decoration:none;
@@ -50,4 +56,11 @@ nav{
   text-decoration-color:#EEC2BC;
   text-underline-offset: 5px;
   text-decoration-thickness: 3px;
+}
+.pet_icon{
+  max-width:20%;
+  max-height: 20%;
+  position:relative;
+  right:-50px;
+  padding-top: 10px;
 }
