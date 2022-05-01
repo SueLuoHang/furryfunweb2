@@ -33,11 +33,31 @@ const moveToSlide = (track, currentSlide, targetSlide) =>{
   targetSlide.classList.add('current-slide');
 };
 
+const updateDots = (currentDot, targetDot) => {
+  currentDot.classList.remove('current-slide');
+  targetDot.classList.add('current-slide');
+};
+
+const hideShowArrows = (slides, prevButton, nextButton, targetIndex) =>{
+  if (targetIndex === 0) {
+    prevButton.classList.add('is-hidden');
+    nextButton.classList.remove('is-hidden');
+  } else if (targetIndex === slides.length - 1) {
+    prevButton.classList.remove('is-hidden');
+    nextButton.classList.add('is-hidden');
+  } else {
+    prevButton.classList.remove('is-hidden');
+    nextButton.classList.remove('is-hidden');
+  }
+};
+
 prevButton.addEventListener('click', e => {
   const currentSlide = track.querySelector('.current-slide');
   const prevSlide = currentSlide.previousElementSibling;
+  const prevIndex = slides.findIndex(slide => slide === prevSlide);
 
-   moveToSlide(track, currentSlide, prevSlide);
+  moveToSlide(track, currentSlide, prevSlide);
+  hideShowArrows(slides, prevButton, nextButton, prevIndex);
 })
 
 //this is for the right arrow working, when i click the right arrow, it will move to the next slide
@@ -45,6 +65,25 @@ nextButton.addEventListener('click', e => {
   const currentSlide = track.querySelector('.current-slide');
   const nextSlide = currentSlide.nextElementSibling;
   moveToSlide(track, currentSlide, nextSlide);
+  const nextIndex = slides.findIndex(slide => slide === nextSlide);
 });
 
-//when i click left, move slides to the left
+//when i the nav indicators, move to that slide
+dotsnav.addEventListener('click',e => {
+  //what indicator was clikced on?
+  const targetDot = e.target.closest('button');
+
+  if(!targetDot) return;
+
+  const currentSlide = track.querySelector('.current-slide');
+  const currentDot = dotsnav.querySelector('.current-slide');
+  const targetIndex =dots.findIndex(dot => dot === targetDot)
+  console.log(targetIndex);
+  const targetSlide = slides[targetIndex];
+
+  moveToSlide(track, currentSlide, targetSlide);
+  updateDots(currentDot, targetDot);
+
+  hideShowArrows(slides, prevButton, nextButton, targetIndex);
+
+});
