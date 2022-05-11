@@ -15,7 +15,22 @@ console.log(slideWidth);
 // slides[0].style.left = slideWidth * 0 + 'px';
 // slides[1].style.left = slideWidth * 1 + 'px';
 // slides[2].style.left = slideWidth * 2 + 'px';
-
-slides.forEach((slide,index) => {
+const setSlidePosition = (slide,index) => {
   slide.style.left = slideWidth * index + 'px'
+};
+
+slides.forEach(setSlidePosition);
+
+//when i click right button, i can move right
+//listen for something
+nextButton.addEventListener('click', e => {
+  const currentSlide = track.querySelector('.current-slide');
+  const nextSlide = currentSlide.nextElementSibling;
+  const amountToMove = currentSlide.style.left;
+  console.log(amountToMove);
+  //move to the next slide
+  track.style.transform = 'translateX(-' + amountToMove + ')';
+  console.log(currentSlide.classList);
+  currentSlide.classList.remove('current-slide');
+  nextSlide.classList.add('current-slide');
 });
