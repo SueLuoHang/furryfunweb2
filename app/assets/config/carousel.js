@@ -26,7 +26,7 @@ slides.forEach(setSlidePosition);
 nextButton.addEventListener('click', e => {
   const currentSlide = track.querySelector('.current-slide');
   const nextSlide = currentSlide.nextElementSibling;
-  const amountToMove = currentSlide.style.left;
+  const amountToMove = nextSlide.style.left;
   console.log(amountToMove);
   //move to the next slide
   track.style.transform = 'translateX(-' + amountToMove + ')';
